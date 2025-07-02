@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}CKD Lab - Result{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-lg p-8 rounded-lg w-full max-w-3xl mx-auto">
+  <h2 class="text-2xl font-bold mb-2 text-center text-green-700">Prediction Result</h2>
+  <p class="text-center text-lg font-semibold mb-6">{{ prediction }}</p>
+
+  <!-- 👤 Patient Info -->
+  <div class="mb-6 border-b pb-4">
+    <p class="text-lg"><strong>Patient Name:</strong> {{ patient_name }}</p>
+    <p class="text-lg"><strong>Age:</strong> {{ patient_age }}</p>
+  </div>
+
+  {% if values %}
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-auto border border-gray-300">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="p-2 border-r">Feature</th>
+          <th class="p-2 border-r">Patient Value</th>
+          <th class="p-2">Normal Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set normal_ranges = {
+          'Serum Creatinine': '0.6 – 1.2 mg/dL',
+          'Specific Gravity': '1.005 – 1.030',
+          'Albumin': '3.4 – 5.4 g/dL',
+          'Haemoglobin': '13.5 – 17.5 g/dL (M), 12.0 – 15.5 (F)',
+          'Diabetes Mellitus': '0 = No, 1 = Yes',
+          'Red Blood Cell Count': '4.7 – 6.1 million/µL',
+          'Packed Cell Volume': '40% – 50% (M), 35% – 45% (F)',
+          'Blood Glucose Random': '70 – 140 mg/dL',
+          'Blood Urea': '7 – 20 mg/dL'
+        } %}
+
+        {% for label, value in values %}
+        <tr class="border-t">
+          <td class="p-2 border-r">{{ label }}</td>
+          <td class="p-2 border-r">{{ value }}</td>
+          <td class="p-2">{{ normal_ranges.get(label, '—') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <!-- 📘 Explainability Link -->
+  <div class="mt-8 text-center">
+    <a href="{{ url_for('main.explain') }}" class="inline-block text-sm text-blue-600 hover:underline">
+      📘 View Explainability Report
+    </a>
+  </div>
+
+  <!-- 🔁 Back -->
+  <div class="mt-6 text-center">
+    <a href="/" class="text-blue-600 hover:underline">← Try another prediction</a>
+  </div>
+</div>
+{% endblock %}

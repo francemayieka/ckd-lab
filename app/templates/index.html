@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}CKD Lab - Prediction{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-lg p-8 rounded-lg w-full max-w-xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6 text-center">CKD Prediction Form</h2>
+  <form action="/predict" method="post" class="space-y-4">
+
+    <div>
+      <label class="block font-medium text-gray-700">Patient Name</label>
+      <input type="text" name="patient_name" required
+             value="{{ form_values.patient_name }}"
+             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+
+    <div>
+      <label class="block font-medium text-gray-700">Age</label>
+      <input type="number" name="age" step="1" required
+             value="{{ form_values.age }}"
+             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+
+    {% set fields = [
+      ('serum_creatinine', 'Serum Creatinine', 'number', 'step=0.01'),
+      ('specific_gravity', 'Specific Gravity', 'number', 'step=0.001'),
+      ('albumin', 'Albumin', 'number', 'step=0.1'),
+      ('haemoglobin', 'Haemoglobin', 'number', 'step=0.1'),
+      ('diabetes_mellitus', 'Diabetes Mellitus (1 = Yes, 0 = No)', 'number', 'min=0 max=1'),
+      ('red_blood_cell_count', 'Red Blood Cell Count', 'number', 'step=0.01'),
+      ('packed_cell_volume', 'Packed Cell Volume', 'number', 'step=0.1'),
+      ('blood_glucose_random', 'Blood Glucose Random', 'number', 'step=1'),
+      ('blood_urea', 'Blood Urea', 'number', 'step=1')
+    ] %}
+
+    {% for name, label, type, extra in fields %}
+    <div>
+      <label class="block font-medium text-gray-700">{{ label }}</label>
+      <input type="{{ type }}" name="{{ name }}" required {{ extra }}
+             value="{{ form_values[name] }}"
+             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+      Predict
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Diagnosis Explanation{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-lg p-6 rounded-lg w-full max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold text-center text-blue-700 mb-4">Diagnosis Explanation</h2>
+  <p class="text-center text-lg mb-4"><strong>Patient:</strong> {{ patient_name }}</p>
+
+  {% if reasons %}
+    <ul class="list-disc list-inside text-gray-700 space-y-2">
+      {% for reason in reasons %}
+        <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-center text-gray-500">No reasons provided.</p>
+  {% endif %}
+
+  <div class="mt-6 text-center">
+    <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

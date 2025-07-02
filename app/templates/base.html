@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}CKD Lab{% endblock %}</title>
+  <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- ✅ Custom Navy Blue Navbar -->
+  <header class="bg-navy text-white py-4 shadow">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <!-- 🔗 CKDLab Home Link -->
+      <a href="{{ url_for('main.home') }}" class="text-2xl font-semibold hover:underline">
+        🧪 CKDLab
+      </a>
+    </div>
+  </header>
+
+  <!-- 🔽 Page Content -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ✅ Footer -->
+  <footer class="bg-navy text-center text-gray-300 py-4 text-sm">
+    &copy; 2025 CKD Lab. All rights reserved.
+  </footer>
+
+</body>
+</html>

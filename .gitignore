@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Model and serialized files
+*.pkl
+
+# SQLite databases
+*.db
+
+# Jupyter Notebook checkpoints (if ever added)
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Vim/Emacs swap files
+*.swp
+*.swo
