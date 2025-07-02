@@ -1,6 +1,9 @@
 # Virtual environment
 venv/
 
+# Node modules
+node_modules/
+
 # Python bytecode
 __pycache__/
 *.pyc
@@ -14,13 +17,13 @@ __pycache__/
 # SQLite databases
 *.db
 
-# Jupyter Notebook checkpoints (if ever added)
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# macOS
+# macOS Finder metadata
 .DS_Store
 
-# VS Code
+# VS Code project settings
 .vscode/
 
 # Vim/Emacs swap files
